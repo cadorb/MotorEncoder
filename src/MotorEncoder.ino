@@ -16,15 +16,21 @@ void loop()
     if (encoder.direct==0)
     {
       Serial.println("backward rotated!");
-      if(position == -360){position = 0;}
-      position = position - 18;
-    }
-     else
-     {Serial.println("forward rotated!");
-     if(position == 360){position = 0;}
-      position = position + 18;
+      if(position == 360){position = 0;}
+      if(position == 0){
+          position = 360 - position - 18;
+      }else{
+        position = position - 18;
       }
+      Serial.println(position);
+    }
+     else{
+      Serial.println("forward rotated!");
+      position = position + 18;
+      if(position == 360){position = 0;}
+      Serial.println(position);
+
+    }
     encoder.rotate_flag =0;
-    Serial.println(position);
   }
  }
